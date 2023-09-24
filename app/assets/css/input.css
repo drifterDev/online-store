@@ -4,6 +4,77 @@ Fecha de creación: 2023
 Este código se proporciona bajo la Licencia MIT.
 Para más información, consulta el archivo LICENSE en la raíz del repositorio. */
 
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    font-family: "Oxygen", sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #000000;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #000000 #ffffff;
+  }
+}
+
+@layer components {
+  .navbar {
+    @apply py-2 border-y-2 border-black;
+  }
+  .navbar ul {
+    @apply flex flex-wrap justify-center;
+  }
+
+  .navbar li {
+    @apply m-3 transition-all;
+  }
+
+  .navbar li:hover {
+    @apply scale-110 text-gray-700;
+  }
+
+  .form {
+    @apply mt-5 flex flex-col items-center justify-center;
+  }
+
+  .form h2 {
+    @apply text-lg mb-2;
+  }
+
+  .form input[type="email"],
+  .form input[type="password"] {
+    @apply w-64 md:w-[80%] h-8 p-2 mb-3 mt-2 border-2 border-gray-500 rounded-md;
+  }
+
+  .form input[type="submit"] {
+    @apply bg-black text-white w-32 px-5 py-2 transition-all cursor-pointer;
+  }
+
+  .form input[type="submit"]:hover {
+    @apply bg-gray-900 scale-105;
+  }
+
+  .actions {
+    @apply my-5 w-full flex flex-col items-center md:items-start md:pl-10 md:list-disc;
+  }
+
+  .actions li {
+    @apply mb-2 pb-1 border-b-2 border-black transition-all;
+  }
+
+  .actions li:hover {
+    @apply scale-105 text-gray-700 border-gray-700;
+  }
+}
