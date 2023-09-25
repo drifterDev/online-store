@@ -8,21 +8,23 @@
 
 namespace App;
 
-if(isset($_GET["controller"])){
-  $controller = $_GET["controller"]."Controller";
-}else{
+require_once '../vendor/autoload.php';
+
+if (isset($_GET["controller"])) {
+  $controller = "Controllers\\" . $_GET["controller"] . "Controller";
+} else {
   echo "No se ha encontrado la pagina";
   exit();
 }
 
-if(class_exists($controller)){
+if (class_exists($controller)) {
   $controller = new $controller();
-  if(isset($_GET["action"]) && method_exists($controller, $_GET["action"])){
+  if (isset($_GET["action"]) && method_exists($controller, $_GET["action"])) {
     $action = $_GET["action"];
     $controller->$action();
-  }else{
+  } else {
     echo "No se ha encontrado la pagina";
   }
-}else{
+} else {
   echo "No se ha encontrado la pagina";
 }
