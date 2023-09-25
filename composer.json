@@ -5,7 +5,11 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "App\\": "app/"
+      "App\\": "app/",
+      "Config\\": "config/",
+      "Controllers\\": "controllers/",
+      "Models\\": "models/",
+      "Views\\": "views/"
     }
   },
   "authors": [

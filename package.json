@@ -4,7 +4,7 @@
   "description": "Proyecto de tienda en línea",
   "main": "index.js",
   "scripts": {
-    "dev": "postcss ./app/assets/css/input.css -o ./app/assets/css/output.css --watch"
+    "dev": "postcss ./assets/css/input.css -o ./app/css/output.css --watch"
   },
   "keywords": [
     "TailwindCSS",
