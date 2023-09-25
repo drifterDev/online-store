@@ -45,9 +45,9 @@
       </ul>
     </nav>
 
-    <div id="content flex flex-wrap">
+    <section class="flex flex-col md:flex-row">
       <!-- Aside -->
-      <aside class="w-full md:max-w-lg md:w-[20%]">
+      <aside class="w-full md:max-w-md md:w-[20%] ">
         <div id="login">
           <form class="form" action="" method="POST">
             <h2>Ingresa</h2>
@@ -71,20 +71,27 @@
         </div>
       </aside>
       <!-- Main -->
-      <!-- <main class="bg-blue-600 h-64">
-        Poner mas de estos
-        <div id="product">
-          <img src="" alt="imagen producto">
-          <h2>Producto #1</h2>
-          <p>30.000 pesos</p>
-          <a href="#">Comprar</a>
+      <main class=" w-full">
+        <div class="flex justify-center px-5 w-full mb-5">
+          <h1 class="text-2xl py-5 border-b-2 border-gray-500 w-full text-center">Productos destacados</h1>
         </div>
-      </main> -->
-      <!-- Footer -->
-      <footer class="text-center py-5 bg-black text-white">
-        <p>Desarrollador por Mateo Álvarez Murillo &copy; <?= date('Y') ?></p>
-      </footer>
-    </div>
+        <!-- Poner mas de estos -->
+        <div id="grid" class="grid grid-cols-3 lg:grid-cols-4">
+          <?php for ($i = 0; $i < 10; $i++) : ?>
+            <div class="product">
+              <div class="bg-[url('../img/producto.jpg')]"></div>
+              <h2>Producto #1</h2>
+              <p>30.000 pesos</p>
+              <a href="#">Comprar</a>
+            </div>
+          <?php endfor; ?>
+        </div>
+      </main>
+    </section>
+    <!-- Footer -->
+    <footer class="text-center py-5 bg-black text-white">
+      <p>Desarrollador por Mateo Álvarez Murillo &copy; <?= date('Y') ?></p>
+    </footer>
   </div>
 </body>
 

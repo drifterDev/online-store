@@ -58,23 +58,45 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
     @apply w-64 md:w-[80%] h-8 p-2 mb-3 mt-2 border-2 border-gray-500 rounded-md;
   }
 
-  .form input[type="submit"] {
-    @apply bg-black text-white w-32 px-5 py-2 transition-all cursor-pointer;
+  .form input[type="submit"],
+  .product a {
+    @apply bg-black text-white w-32 md:w-28 lg:w-32 px-5 md:px-2 lg:px-5 py-2 transition-all cursor-pointer mb-8;
   }
 
-  .form input[type="submit"]:hover {
+  .form input[type="submit"]:hover,
+  .product a:hover {
     @apply bg-gray-900 scale-105;
   }
 
+  .form label {
+    @apply text-center;
+  }
+
   .actions {
-    @apply my-5 w-full flex flex-col items-center md:items-start md:pl-10 md:list-disc;
+    @apply mb-8 w-full flex flex-col items-center md:items-start md:pl-10 md:list-disc;
   }
 
   .actions li {
-    @apply mb-2 pb-1 border-b-2 border-black transition-all;
+    @apply mb-3 md:mb-2 pb-1 border-b-2 border-black transition-all;
   }
 
   .actions li:hover {
     @apply scale-105 text-gray-700 border-gray-700;
+  }
+
+  .product {
+    @apply mb-5 flex flex-col items-center w-full text-center;
+  }
+
+  .product h2 {
+    @apply font-bold;
+  }
+
+  .product p {
+    @apply text-sm mb-3;
+  }
+
+  .product div {
+    @apply w-40 h-40 lg:w-48 lg:h-48 bg-no-repeat bg-center bg-cover;
   }
 }
