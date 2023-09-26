@@ -6,19 +6,36 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
 <div class="register-user">
   <h1>Registrate</h1>
+  <?php
+
+  use Helpers\Utils;
+
+  if (isset($_SESSION["register"])) : ?>
+    <?php if ($_SESSION["register"] == "complete") : ?>
+      <div class="alerta alerta-exito">Registro completado</div>
+    <?php else : ?>
+      <div class="alerta alerta-error">Registro fallido</div>
+    <?php endif; ?>
+  <?php endif; ?>
+  <?php Utils::deleteSession("register") ?>
   <form action="../../user/save" method="POST">
     <label for="name">Nombre</label>
+    <?php Utils::showError("register-name") ?>
     <input type="text" name="name" id="name" required>
 
     <label for="surnames">Apellidos</label>
+    <?php Utils::showError("register-surnames") ?>
     <input type="text" name="surnames" id="surnames" required>
 
     <label for="email">Correo electronico</label>
+    <?php Utils::showError("register-email") ?>
     <input type="email" name="email" id="email" required>
 
     <label for="password">Contraseña</label>
+    <?php Utils::showError("register-password") ?>
     <input type="text" name="password" id="password" required>
 
     <input type="submit" value="Registrarse">
   </form>
+  <?php Utils::deleteSession("errors") ?>
 </div>

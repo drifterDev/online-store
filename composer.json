@@ -8,6 +8,7 @@
       "Config\\": "config/",
       "Controllers\\": "controllers/",
       "Models\\": "models/",
+      "Helpers\\": "helpers/",
       "Views\\": "views/"
     }
   },

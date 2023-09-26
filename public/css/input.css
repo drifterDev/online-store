@@ -119,15 +119,27 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
     @apply w-64 h-8 p-2 mb-3 mt-2 border-2 border-gray-500 rounded-md;
   }
 
-  .error{
+  .error {
     @apply flex flex-col items-center w-full mt-16;
   }
 
-  .error p{
+  .error p {
     @apply mt-16 text-3xl;
   }
 
-  .error span{
+  .error span {
     @apply mt-5 text-xl;
+  }
+
+  .alerta {
+    @apply w-64 rounded px-2 py-1 mt-1 mb-3 text-center;
+  }
+
+  .alerta-exito {
+    @apply bg-green-300 text-green-600;
+  }
+
+  .alerta-error {
+    @apply bg-red-300 text-red-600;
   }
 }
