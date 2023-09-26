@@ -8,22 +8,14 @@
 
 namespace Controllers;
 
-class UserController
+class ErrorController
 {
   public function index()
   {
-    echo "Hola desde el controlador de usuarios";
+    echo "<div class='error'>";
+    echo "<p>Error 404</p>";
+    echo "<span>La página que buscas no existe</span>";
+    echo "</div>";
   }
 
-  public function register()
-  {
-    require_once '../views/user/register.php';
-  }
-
-  public function save()
-  {
-    if (isset($_POST)) {
-      var_dump($_POST);
-    }
-  }
 }

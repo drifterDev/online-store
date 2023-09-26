@@ -3,7 +3,6 @@ Fecha de creación: 2023
 
 Este código se proporciona bajo la Licencia MIT.
 Para más información, consulta el archivo LICENSE en la raíz del repositorio. -->
-<!-- Main -->
 
 <main class=" w-full">
   <div class="flex justify-center px-5 w-full mb-5">

@@ -6,12 +6,6 @@
 // Este código se proporciona bajo la Licencia MIT.
 // Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
-namespace Controllers;
-
-class ProductController
-{
-  public function index()
-  {
-    require_once '../views/product/featured.php';
-  }
-}
+define("BASE_URL", "tienda.test");
+define("CONTROLLER_DEFAULT", "Controllers\\ProductController");
+define("ACTION_DEFAULT", "index");
