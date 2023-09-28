@@ -6,18 +6,17 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
 <div class="register-user">
   <h1>Registrate</h1>
+
   <?php
 
-  use Helpers\Utils;
-
-  if (isset($_SESSION["register"])) : ?>
+  use Helpers\Utils; ?>
+  <?php if (isset($_SESSION["register"])) : ?>
     <?php if ($_SESSION["register"] == "complete") : ?>
       <div class="alerta alerta-exito">Registro completado</div>
     <?php else : ?>
       <div class="alerta alerta-error">Registro fallido</div>
     <?php endif; ?>
   <?php endif; ?>
-  <?php Utils::deleteSession("register") ?>
   <form action="../../user/save" method="POST">
     <label for="name">Nombre</label>
     <?php Utils::showError("register-name") ?>
@@ -27,15 +26,17 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
     <?php Utils::showError("register-surnames") ?>
     <input type="text" name="surnames" id="surnames" required>
 
-    <label for="email">Correo electronico</label>
+    <label for="email2">Correo electronico</label>
     <?php Utils::showError("register-email") ?>
-    <input type="email" name="email" id="email" required>
+    <input type="email" name="email2" id="email2" required>
 
-    <label for="password">Contraseña</label>
+    <label for="password2">Contraseña</label>
     <?php Utils::showError("register-password") ?>
-    <input type="text" name="password" id="password" required>
+    <input type="password" name="password2" id="password2" required>
 
     <input type="submit" value="Registrarse">
   </form>
   <?php Utils::deleteSession("errors") ?>
+  <?php Utils::deleteSession("register") ?>
+
 </div>

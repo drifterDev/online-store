@@ -41,8 +41,8 @@ if (isset($_GET["controller"]) && isset($_GET["action"])) {
 } else {
   $controller = CONTROLLER_DEFAULT;
   $controller = new $controller();
-  $controller->ACTION_DEFAULT();
+  $action = ACTION_DEFAULT;
+  $controller->$action();
 }
 
-// require_once '../views/layout/main.php';
 require_once '../views/layout/footer.php';

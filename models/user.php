@@ -68,12 +68,12 @@ class User
 
   function getPassword()
   {
-    return $this->password;
+    return password_hash($this->database->real_escape_string($this->password), PASSWORD_BCRYPT, ['cost' => 4]);
   }
 
   function setPassword($password)
   {
-    $this->password = password_hash($this->database->real_escape_string($password), PASSWORD_BCRYPT, ['cost' => 4]);
+    $this->password = $password;
   }
 
   function getRole()
@@ -110,6 +110,32 @@ class User
       $stmt->execute();
       $stmt->close();
       return true;
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
+
+  public function login()
+  {
+    $email = $this->email;
+    $password = $this->password;
+    $sql = "SELECT * FROM usuarios WHERE email = ?;";
+    try {
+      $stmt = $this->database->prepare($sql);
+      $stmt->bind_param("s", $email);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      $stmt->close();
+      if ($result->num_rows == 1) {
+        $user = $result->fetch_assoc();
+        if (password_verify($password, $user["password"])) {
+          return $user;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
     } catch (\Throwable $th) {
       return false;
     }

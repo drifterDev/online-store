@@ -12,14 +12,12 @@ class Utils
 {
   public static function deleteSession($value)
   {
-    if (isset($_SESSION[$value])) {
-      unset($_SESSION[$value]);
-    }
+    unset($_SESSION[$value]);
   }
 
   public static function showError($error)
   {
-    if (isset($_SESSION) && isset($_SESSION["errors"][$error])) {
+    if (isset($_SESSION["errors"][$error])) {
       echo "<div class='alerta alerta-error'>" . $_SESSION["errors"][$error] . "</div>";
     }
   }

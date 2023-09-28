@@ -115,6 +115,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
   }
 
   .register-user input[type="text"],
+  .register-user input[type="password"],
   .register-user input[type="email"] {
     @apply w-64 h-8 p-2 mb-3 mt-2 border-2 border-gray-500 rounded-md;
   }
@@ -132,7 +133,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
   }
 
   .alerta {
-    @apply w-64 rounded px-2 py-1 mt-1 mb-3 text-center;
+    @apply max-w-[16rem] w-full rounded px-2 py-1 mt-1 mb-3 text-center;
   }
 
   .alerta-exito {

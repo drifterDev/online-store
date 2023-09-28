@@ -27,23 +27,27 @@ class UserController
     if (isset($_POST)) {
       $name = $_POST["name"] ?? false;
       $surnames = $_POST["surnames"] ?? false;
-      $email = trim($_POST["email"]) ?? false;
-      $password = $_POST["password"] ?? false;
-      $errors = array();
-      if (empty($name) || is_numeric($name) || preg_match("/[0-9]/", $name)) {
-        $errors["register-name"] = "Nombre ingresado no es valido.";
+      $email = trim($_POST["email2"]) ?? false;
+      $password = $_POST["password2"] ?? false;
+      $errors = 0;
+      if (empty($name) || preg_match("/[0-9]/", $name)) {
+        $_SESSION["errors"]["register-name"] = "Nombre ingresado no es valido.";
+        $errors++;
       }
-      if (empty($surnames) || is_numeric($surnames) || preg_match("/[0-9]/", $surnames)) {
-        $errors["register-surnames"] = "Apellidos ingresados no son validos.";
+      if (empty($surnames) || preg_match("/[0-9]/", $surnames)) {
+        $_SESSION["errors"]["register-surnames"] = "Apellidos ingresados no son validos.";
+        $errors++;
       }
       if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors["register-email"] = "Correo ingresado no es valido.";
+        $_SESSION["errors"]["register-email"] = "Correo ingresado no es valido.";
+        $errors++;
       }
       if (empty($password)) {
-        $errors["register-password"] = "Contraseña ingresada no es valida";
+        $_SESSION["errors"]["register-password"] = "Contraseña ingresada no es valida";
+        $errors++;
       }
 
-      if (count($errors) == 0) {
+      if ($errors == 0) {
         $user = new User();
         $user->setName($name);
         $user->setSurnames($surnames);
@@ -56,11 +60,42 @@ class UserController
           $_SESSION['register'] = "failed";
         }
       }
-      $_SESSION["errors"] = $errors;
     } else {
       $_SESSION['register'] = "failed";
     }
     header("Location: ../../user/register");
+    exit();
+  }
+
+  public function login()
+  {
+    if (isset($_POST)) {
+      $user = new User();
+      $user->setEmail($_POST["email"]);
+      $user->setPassword($_POST["password"]);
+      $result = $user->login();
+      if ($result != false) {
+        $_SESSION["user"] = $result;
+        if ($result["role"] == "admin") {
+          $_SESSION["admin"] = true;
+        }
+      } else {
+        $_SESSION["errors"]["error-login"] = "Identificación fallida";
+      }
+    }
+    header("Location: ../../");
+    exit();
+  }
+
+  public function logout()
+  {
+    if (isset($_SESSION["user"])) {
+      unset($_SESSION["user"]);
+    }
+    if (isset($_SESSION["admin"])) {
+      unset($_SESSION["admin"]);
+    }
+    header("Location: ../../");
     exit();
   }
 }
