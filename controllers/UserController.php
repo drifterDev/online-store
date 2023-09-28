@@ -76,7 +76,7 @@ class UserController
       $result = $user->login();
       if ($result != false) {
         $_SESSION["user"] = $result;
-        if ($result["role"] == "admin") {
+        if ($result["rol"] == "admin") {
           $_SESSION["admin"] = true;
         }
       } else {

@@ -3,7 +3,7 @@ Fecha de creación: 2023
 
 Este código se proporciona bajo la Licencia MIT.
 Para más información, consulta el archivo LICENSE en la raíz del repositorio. -->
-<section class="ml-6 flex flex-col md:flex-row">
+<section class="mx-6 flex flex-col md:flex-row md:min-h-[24rem]">
   <?php
 
   use Helpers\Utils; ?>
@@ -25,18 +25,27 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
         </form>
       <?php endif; ?>
       <ul class="actions">
-        <li>
-          <a href="#">Mis pedidos</a>
-        </li>
-        <li>
-          <a href="#">Gestionar pedidos</a>
-        </li>
-        <li>
-          <a href="#">Gestionar categorías</a>
-        </li>
-        <li>
-          <a href="../../user/logout">Cerrar sesión</a>
-        </li>
+        <?php if (isset($_SESSION["user"])) : ?>
+          <li>
+            <a href="#">Mis pedidos</a>
+          </li>
+        <?php endif; ?>
+        <?php if (isset($_SESSION["admin"])) : ?>
+          <li>
+            <a href="../../category/index">Gestionar categorías</a>
+          </li>
+          <li>
+            <a href="#">Gestionar productos</a>
+          </li>
+          <li>
+            <a href="#">Gestionar pedidos</a>
+          </li>
+        <?php endif; ?>
+        <?php if (isset($_SESSION["user"])) : ?>
+          <li>
+            <a href="../../user/logout">Cerrar sesión</a>
+          </li>
+        <?php endif; ?>
       </ul>
     </div>
     <?php unset($_SESSION["errors"]["error-login"]) ?>

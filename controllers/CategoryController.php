@@ -8,10 +8,19 @@
 
 namespace Controllers;
 
+use Models\Category;
+
 class CategoryController
 {
   public function index()
   {
-    echo "Hola desde el controlador de categorias";
+    $category = new Category();
+    $categories = $category->getAll();
+    require_once '../views/category/index.php';
+  }
+
+  public function create()
+  {
+    require_once '../views/category/create.php';
   }
 }

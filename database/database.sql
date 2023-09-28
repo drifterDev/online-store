@@ -69,3 +69,6 @@ CREATE TABLE
         CONSTRAINT fk_pedidos_has_productos_pedido FOREIGN KEY(pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE ON UPDATE CASCADE,
         CONSTRAINT fk_pedidos_has_productos_producto FOREIGN KEY(producto_id) REFERENCES productos(id) ON DELETE CASCADE ON UPDATE CASCADE
     ) Engine = InnoDB DEFAULT CHARSET = utf8mb4;
+
+INSERT INTO categorias (nombre)
+VALUES ("Vestidos"), ("Ropa deportiva"), ("Trajes y ropa formal"), ("Pantalones y vaqueros");

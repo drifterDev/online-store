@@ -60,12 +60,14 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
   .form input[type="submit"],
   .register-user input[type="submit"],
+  .boton,
   .product a {
     @apply bg-black text-white w-32 md:w-28 lg:w-32 px-5 md:px-2 lg:px-5 py-2 transition-all cursor-pointer mb-8;
   }
 
   .form input[type="submit"]:hover,
   .register-user input[type="submit"]:hover,
+  .boton:hover,
   .product a:hover {
     @apply bg-gray-900 scale-105;
   }
