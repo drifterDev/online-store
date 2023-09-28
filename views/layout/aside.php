@@ -29,6 +29,10 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
           <li>
             <a href="#">Mis pedidos</a>
           </li>
+        <?php else : ?>
+          <li>
+            <a href="../../user/register">Registrate</a>
+          </li>
         <?php endif; ?>
         <?php if (isset($_SESSION["admin"])) : ?>
           <li>

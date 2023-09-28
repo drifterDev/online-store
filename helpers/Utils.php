@@ -8,6 +8,8 @@
 
 namespace Helpers;
 
+use Models\Category;
+
 class Utils
 {
   public static function deleteSession($value)
@@ -20,5 +22,21 @@ class Utils
     if (isset($_SESSION["errors"][$error])) {
       echo "<div class='alerta alerta-error'>" . $_SESSION["errors"][$error] . "</div>";
     }
+  }
+
+  public static function isAdmin()
+  {
+    if (isset($_SESSION["admin"])) {
+      return true;
+    }
+    header("Location: ../../product/index");
+    exit();
+  }
+
+  public static function showCategories()
+  {
+    $category = new Category();
+    $categories = $category->getAll();
+    return $categories;
   }
 }

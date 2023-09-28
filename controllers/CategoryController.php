@@ -8,6 +8,7 @@
 
 namespace Controllers;
 
+use Helpers\Utils;
 use Models\Category;
 
 class CategoryController
@@ -21,6 +22,74 @@ class CategoryController
 
   public function create()
   {
+    Utils::isAdmin();
     require_once '../views/category/create.php';
+  }
+
+  public function edit()
+  {
+    Utils::isAdmin();
+    require_once '../views/category/edit.php';
+  }
+
+  public function save()
+  {
+    Utils::isAdmin();
+    if (isset($_POST)) {
+      $name = $_POST["name"] ?? false;
+      $errors = 0;
+      if (empty($name) || preg_match("/[0-9]/", $name)) {
+        $_SESSION["errors"]["create-category-name"] = "Nombre ingresado no es valido.";
+        $errors++;
+      }
+
+      if ($errors == 0) {
+        $category = new Category();
+        $category->setName($name);
+        $result = $category->save();
+        if ($result) {
+
+          header("Location: ../../category/index");
+          exit();
+        } else {
+          $_SESSION["errors"]["create-category"] = "Error al crear la categoría.";
+        }
+      }
+    }
+    header("Location: ../../category/create");
+    exit();
+  }
+
+  public function editCategory()
+  {
+    Utils::isAdmin();
+    if (isset($_POST)) {
+      $name = $_POST["name"] ?? false;
+      $id = $_POST["category"] ?? false;
+      $errors = 0;
+      if (empty($name)) {
+        $_SESSION["errors"]["edit-category-name"] = "Nombre ingresado no es valido.";
+        $errors++;
+      }
+      if (empty($id)) {
+        $_SESSION["errors"]["edit-category-id"] = "Categoría ingresada no es valida.";
+        $errors++;
+      }
+
+      if ($errors == 0) {
+        $category = new Category();
+        $category->setName($name);
+        $category->setId($id);
+        $result = $category->edit();
+        if ($result) {
+          header("Location: ../../category/index");
+          exit();
+        } else {
+          $_SESSION["errors"]["edit-category"] = "Error al crear la categoría.";
+        }
+      }
+    }
+    header("Location: ../../category/edit");
+    exit();
   }
 }

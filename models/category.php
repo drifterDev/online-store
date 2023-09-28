@@ -26,6 +26,11 @@ class Category
     return $this->id;
   }
 
+  public function setId($id)
+  {
+    $this->id = $this->database->real_escape_string($id);
+  }
+
   public function getName()
   {
     return $this->name;
@@ -41,5 +46,33 @@ class Category
     $sql = "SELECT * FROM categorias ORDER BY id ASC";
     $categories = $this->database->query($sql);
     return $categories;
+  }
+
+  public function save()
+  {
+    $sql = "INSERT INTO categorias (nombre) VALUES (?);";
+    try {
+      $stmt = $this->database->prepare($sql);
+      $stmt->bind_param("s", $this->getName());
+      $stmt->execute();
+      $stmt->close();
+      return true;
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
+
+  public function edit()
+  {
+    $sql = "UPDATE categorias SET nombre = ? WHERE id = ?;";
+    try {
+      $stmt = $this->database->prepare($sql);
+      $stmt->bind_param("si", $this->getName(), $this->getId());
+      $stmt->execute();
+      $stmt->close();
+      return true;
+    } catch (\Throwable $th) {
+      return false;
+    }
   }
 }

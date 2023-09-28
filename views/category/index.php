@@ -26,5 +26,8 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
       <?php endwhile; ?>
     </tbody>
   </table>
-  <a href="../../category/create" class="boton w-52 text-center">Crear nueva categoría</a>
+  <div class="flex flex-col md:flex-row w-full items-center md:justify-center">
+    <a href="../../category/edit" class="md:mr-8 boton w-52 text-center">Editar categoría</a>
+    <a href="../../category/create" class="boton w-52 text-center">Crear categoría</a>
+  </div>
 </div>

@@ -38,7 +38,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
   }
 
   .navbar li {
-    @apply m-3 transition-all;
+    @apply m-3 md:mx-8 transition-all;
   }
 
   .navbar li:hover {
@@ -120,6 +120,10 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
   .register-user input[type="password"],
   .register-user input[type="email"] {
     @apply w-64 h-8 p-2 mb-3 mt-2 border-2 border-gray-500 rounded-md;
+  }
+
+  .register-user select {
+    @apply w-64 h-8 p-1 mb-3 mt-2 border-2 border-gray-500 rounded-md;
   }
 
   .error {

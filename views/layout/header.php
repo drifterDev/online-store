@@ -22,20 +22,16 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
         <li>
           <a href="#">Inicio</a>
         </li>
-        <li>
-          <a href="#">Categoría 1</a>
-        </li>
-        <li>
-          <a href="#">Categoría 2</a>
-        </li>
-        <li>
-          <a href="#">Categoría 3</a>
-        </li>
-        <li>
-          <a href="#">Categoría 4</a>
-        </li>
-        <li>
-          <a href="#">Categoría 5</a>
-        </li>
+        <?php
+
+        use Helpers\Utils;
+
+        $categories = Utils::showCategories();
+        ?>
+        <?php while ($category = $categories->fetch_object()) : ?>
+          <li>
+            <a href="#"><?= $category->nombre ?></a>
+          </li>
+        <?php endwhile; ?>
       </ul>
     </nav>
