@@ -39,7 +39,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
             <a href="../../category/index">Gestionar categorías</a>
           </li>
           <li>
-            <a href="#">Gestionar productos</a>
+            <a href="../../product/management">Gestionar productos</a>
           </li>
           <li>
             <a href="#">Gestionar pedidos</a>

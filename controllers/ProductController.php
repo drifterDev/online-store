@@ -8,10 +8,21 @@
 
 namespace Controllers;
 
+use Models\Product;
+use Helpers\Utils;
+
 class ProductController
 {
   public function index()
   {
-    require_once '../views/product/featured.php';
+    require_once '../views/product/index.php';
+  }
+
+  public function management()
+  {
+    Utils::isAdmin();
+    $product = new Product();
+    $products = $product->getAll();
+    require_once '../views/product/management.php';
   }
 }

@@ -72,3 +72,28 @@ CREATE TABLE
 
 INSERT INTO categorias (nombre)
 VALUES ("Vestidos"), ("Ropa deportiva"), ("Trajes y ropa formal"), ("Pantalones y vaqueros");
+
+INSERT INTO
+    productos (
+        categoria_id,
+        nombre,
+        descripcion,
+        precio,
+        stock,
+        fecha
+    )
+VALUES (
+        3,
+        'Producto 3',
+        'Descripción del Producto 3',
+        25.850,
+        50,
+        '2023-09-29'
+    ), (
+        4,
+        'Producto prueba 4 de talla XS',
+        'Descripción del Producto 4',
+        69.950,
+        30,
+        '2023-09-30'
+    );
