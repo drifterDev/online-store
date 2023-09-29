@@ -10,7 +10,11 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
   use Helpers\Utils; ?>
   <form action="../../category/editCategory" method="POST">
-    <?php Utils::showError("edit-category") ?>
+    <?php if (isset($_SESSION["edit-category"])) : ?>
+      <?php if ($_SESSION["edit-category"] != "complete") : ?>
+        <div class="alerta alerta-error">Actualización fallida</div>
+      <?php endif; ?>
+    <?php endif; ?>
     <label for="category">Categoría a editar</label>
     <?php Utils::showError("edit-category-id") ?>
     <select name="category" id="category">

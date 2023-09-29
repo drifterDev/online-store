@@ -3,39 +3,48 @@ Fecha de creación: 2023
 
 Este código se proporciona bajo la Licencia MIT.
 Para más información, consulta el archivo LICENSE en la raíz del repositorio. -->
+<?php
 
-<div class="w-full flex flex-col mt-5 items-center">
-  <h1 class="text-xl font-medium text-center mb-5">Gestionar productos</h1>
-  <table class="mb-5 max-w-[30rem] w-full divide-y divide-gray-200">
+use Helpers\Utils; ?>
+<div class="tabla">
+  <h1>Gestionar productos</h1>
+  <?php if (isset($_SESSION["create-product"])) : ?>
+    <?php if ($_SESSION["create-product"] == "complete") : ?>
+      <div class="alerta alerta-exito mb-5">Registro exitoso</div>
+    <?php endif; ?>
+  <?php endif; ?>
+  <table>
     <thead>
       <tr>
-        <th class="px-6 py-3 bg-gray-200 text-sm text-left leading-4 font-medium text-black uppercase tracking-wider">Id</th>
-        <th class="px-6 py-3 bg-gray-200 text-sm text-left leading-4 font-medium text-black uppercase tracking-wider">Nombre</th>
-        <th class="px-6 py-3 bg-gray-200 text-sm text-left leading-4 font-medium text-black uppercase tracking-wider">Precio</th>
-        <th class="px-6 py-3 bg-gray-200 text-sm text-left leading-4 font-medium text-black uppercase tracking-wider">Stock</th>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Stock</th>
       </tr>
     </thead>
-    <tbody class="bg-white divide-y divide-gray-300">
+    <tbody>
       <?php while ($product = $products->fetch_object()) : ?>
         <tr>
-          <td class="px-6 py-4 whitespace-no-wrap">
+          <td class="">
             <?= $product->id ?>
           </td>
-          <td class="px-6 py-4 whitespace-no-wrap">
+          <td>
             <?= $product->nombre ?>
           </td>
-          <td class="px-6 py-4 whitespace-no-wrap">
+          <td>
             <?= $product->precio ?>
           </td>
-          <td class="px-6 py-4 whitespace-no-wrap">
+          <td>
             <?= $product->stock ?>
           </td>
         </tr>
       <?php endwhile; ?>
     </tbody>
   </table>
-  <div class="flex flex-col md:flex-row w-full items-center md:justify-center">
+  <div class="botones">
     <a href="../../product/edit" class="md:mr-8 boton w-52 text-center">Editar producto</a>
     <a href="../../product/create" class="boton w-52 text-center">Crear producto</a>
   </div>
+  <?php Utils::deleteSession("create-product") ?>
+
 </div>

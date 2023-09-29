@@ -48,13 +48,15 @@ class CategoryController
         $category->setName($name);
         $result = $category->save();
         if ($result) {
-
+          $_SESSION["create-category"] = "complete";
           header("Location: ../../category/index");
           exit();
         } else {
-          $_SESSION["errors"]["create-category"] = "Error al crear la categoría.";
+          $_SESSION["create-category"] = "Failed";
         }
       }
+    } else {
+      $_SESSION["create-category"] = "Failed";
     }
     header("Location: ../../category/create");
     exit();
@@ -82,12 +84,15 @@ class CategoryController
         $category->setId($id);
         $result = $category->edit();
         if ($result) {
+          $_SESSION["edit-category"] = "complete";
           header("Location: ../../category/index");
           exit();
         } else {
-          $_SESSION["errors"]["edit-category"] = "Error al crear la categoría.";
+          $_SESSION["edit-category"] = "failed";
         }
       }
+    } else {
+      $_SESSION["edit-category"] = "failed";
     }
     header("Location: ../../category/edit");
     exit();

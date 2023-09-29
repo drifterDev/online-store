@@ -118,8 +118,17 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
   .register-user input[type="text"],
   .register-user input[type="password"],
+  .register-user input[type="number"],
   .register-user input[type="email"] {
     @apply w-64 h-8 p-2 mb-3 mt-2 border-2 border-gray-500 rounded-md;
+  }
+
+  .register-user textarea {
+    @apply w-64 h-32 p-2 mb-3 mt-2 border-2 border-gray-500 rounded-md;
+  }
+
+  .register-user #labelImage {
+    @apply border-b-2 border-black cursor-pointer pb-2 text-lg mt-5;
   }
 
   .register-user select {
@@ -148,5 +157,33 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
   .alerta-error {
     @apply bg-red-300 text-red-600;
+  }
+
+  .tabla {
+    @apply w-full flex flex-col mt-5 items-center;
+  }
+
+  .tabla h1 {
+    @apply text-xl font-medium text-center mb-5;
+  }
+
+  .tabla table {
+    @apply mb-5 max-w-[30rem] w-full divide-y divide-gray-200;
+  }
+
+  .tabla th {
+    @apply px-6 py-3 bg-gray-200 text-sm text-left leading-4 font-medium text-black uppercase tracking-wider;
+  }
+
+  .tabla tbody {
+    @apply bg-white divide-y divide-gray-300;
+  }
+
+  .tabla td {
+    @apply px-6 py-4;
+  }
+
+  .tabla .botones {
+    @apply flex flex-col md:flex-row w-full items-center md:justify-center;
   }
 }

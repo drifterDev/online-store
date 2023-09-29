@@ -113,4 +113,28 @@ class Product
     $products = $this->database->query($sql);
     return $products;
   }
+
+  public function save()
+  {
+    // $sql = "INSERT INTO productos (categoria_id, nombre, descripcion, precio, stock, oferta, fecha, imagen)" .
+    //   "VALUES (?, ?, ?, ?, ?, null, CURDATE(), ?);";
+    $sql = "INSERT INTO productos (categoria_id, nombre, descripcion, precio, stock, oferta, fecha) " .
+      "VALUES (?, ?, ?, ?, ?, null, CURDATE());";
+    try {
+      $stmt = $this->database->prepare($sql);
+      $name = $this->getName();
+      $description = $this->getDescription();
+      $price = $this->getPrice();
+      $stock = $this->getStock();
+      $category_id = $this->getCategoryId();
+      // $image = $this->getImage();
+      // $stmt->bind_param("issids", $category_id, $name, $description, $price, $stock, $image);
+      $stmt->bind_param("issdi", $category_id, $name, $description, $price, $stock);
+      $stmt->execute();
+      $stmt->close();
+      return true;
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
 }
