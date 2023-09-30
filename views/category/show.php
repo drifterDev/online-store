@@ -16,12 +16,14 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
       <div id="grid" class="grid grid-cols-2 lg:grid-cols-3">
         <?php while ($product =  $products->fetch_object()) : ?>
           <div class="product">
-            <div>
-              <img src="../img/uploads/<?= $product->imagen ?>" alt="Imagen del producto">
-            </div>
-            <h2><?= $product->nombre ?></h2>
-            <p><?= $product->precio ?> COP</p>
-            <a href="../../product/index">Comprar</a>
+            <a href="../../product/show&id=<?= $product->id ?>" class="cursor-pointer hover:scale-95 transition-all">
+              <div>
+                <img src="../img/uploads/<?= $product->imagen ?>" alt="Imagen del producto">
+              </div>
+              <h2><?= $product->nombre ?></h2>
+              <p><?= $product->precio ?> COP</p>
+            </a>
+            <a href="../../product/index" class="boton">Comprar</a>
           </div>
         <?php endwhile; ?>
       </div>
