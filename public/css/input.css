@@ -65,6 +65,14 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
     @apply bg-black text-white w-32 md:w-28 lg:w-32 px-5 md:px-2 lg:px-5 py-2 transition-all cursor-pointer mb-8;
   }
 
+  .boton2 {
+    @apply bg-gray-300 text-black w-20 md:w-[4.25rem] lg:w-24 px-2 md:px-1 lg:px-5 py-2 transition-all cursor-pointer mb-8;
+  }
+
+  .boton2:hover {
+    @apply bg-gray-400 scale-105;
+  }
+
   .form input[type="submit"]:hover,
   .register-user input[type="submit"]:hover,
   .boton:hover,

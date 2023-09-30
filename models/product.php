@@ -116,10 +116,8 @@ class Product
 
   public function save()
   {
-    // $sql = "INSERT INTO productos (categoria_id, nombre, descripcion, precio, stock, oferta, fecha, imagen)" .
-    //   "VALUES (?, ?, ?, ?, ?, null, CURDATE(), ?);";
-    $sql = "INSERT INTO productos (categoria_id, nombre, descripcion, precio, stock, oferta, fecha) " .
-      "VALUES (?, ?, ?, ?, ?, null, CURDATE());";
+    $sql = "INSERT INTO productos (categoria_id, nombre, descripcion, precio, stock, oferta, fecha, imagen) " .
+      "VALUES (?, ?, ?, ?, ?, null, CURDATE(),?);";
     try {
       $stmt = $this->database->prepare($sql);
       $name = $this->getName();
@@ -127,9 +125,22 @@ class Product
       $price = $this->getPrice();
       $stock = $this->getStock();
       $category_id = $this->getCategoryId();
-      // $image = $this->getImage();
-      // $stmt->bind_param("issids", $category_id, $name, $description, $price, $stock, $image);
-      $stmt->bind_param("issdi", $category_id, $name, $description, $price, $stock);
+      $image = $this->getImage();
+      $stmt->bind_param("issdis", $category_id, $name, $description, $price, $stock, $image);
+      $stmt->execute();
+      $stmt->close();
+      return true;
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
+
+  public function delete()
+  {
+    $sql = "DELETE FROM productos WHERE id = ?;";
+    try {
+      $stmt = $this->database->prepare($sql);
+      $stmt->bind_param("i", $this->getId());
       $stmt->execute();
       $stmt->close();
       return true;

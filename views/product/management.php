@@ -13,6 +13,13 @@ use Helpers\Utils; ?>
       <div class="alerta alerta-exito mb-5">Registro exitoso</div>
     <?php endif; ?>
   <?php endif; ?>
+  <?php if (isset($_SESSION["delete-product"])) : ?>
+    <?php if ($_SESSION["delete-product"] == "complete") : ?>
+      <div class="alerta alerta-exito mb-5">Eliminación exitosa</div>
+    <?php elseif ($_SESSION["delete-product"] == "failed") : ?>
+      <div class="alerta alerta-error mb-5">Eliminación fallida</div>
+    <?php endif; ?>
+  <?php endif; ?>
   <table>
     <thead>
       <tr>
@@ -20,6 +27,7 @@ use Helpers\Utils; ?>
         <th>Nombre</th>
         <th>Precio</th>
         <th>Stock</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -37,14 +45,17 @@ use Helpers\Utils; ?>
           <td>
             <?= $product->stock ?>
           </td>
+          <td class="flex">
+            <a href="../../product/edit&id=<?= $product->id ?>" class="boton2 text-center mr-5">Editar</a>
+            <a href="../../product/delete&id=<?= $product->id ?>" class="boton2 text-center">Eliminar</a>
+          </td>
         </tr>
       <?php endwhile; ?>
     </tbody>
   </table>
   <div class="botones">
-    <a href="../../product/edit" class="md:mr-8 boton w-52 text-center">Editar producto</a>
     <a href="../../product/create" class="boton w-52 text-center">Crear producto</a>
   </div>
   <?php Utils::deleteSession("create-product") ?>
-
+  <?php Utils::deleteSession("delete-product") ?>
 </div>

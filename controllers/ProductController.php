@@ -41,7 +41,6 @@ class ProductController
       $price = $_POST["price"] ?? false;
       $stock = $_POST["stock"] ?? false;
       $category_id = $_POST["category"] ?? false;
-      // $image = $_POST["image"] ?? false;
       $errors = 0;
       if (empty($name)) {
         $_SESSION["errors"]["create-product-name"] = "Nombre ingresado no es valido.";
@@ -65,10 +64,21 @@ class ProductController
         $_SESSION["errors"]["create-product-category-id"] = "Categoría ingresada no es valida.";
         $errors++;
       }
-      // if (empty($image)) {
-      //   $_SESSION["errors"]["create-product-image"] = "Imagen ingresada no es valida.";
-      //   $errors++;
-      // }
+
+      // Imagen
+      $file = $_FILES["image"] ?? false;
+      $filename = $file["name"];
+      $mimetype = $file["type"];
+
+      if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
+        if (!is_dir("img/uploads")) {
+          mkdir("img/uploads", 0777);
+        }
+        move_uploaded_file($file["tmp_name"], "img/uploads/" . $filename);
+      } else {
+        $_SESSION["errors"]["create-product-image"] = "Imagen ingresada no es valida.";
+        $errors++;
+      }
 
       if ($errors == 0) {
         $producto = new Product();
@@ -77,7 +87,7 @@ class ProductController
         $producto->setPrice($price);
         $producto->setStock($stock);
         $producto->setCategoryId($category_id);
-        // $producto->setImage($image);
+        $producto->setImage($filename);
         $save = $producto->save();
         if ($save) {
           $_SESSION["create-product"] = "complete";
@@ -91,6 +101,29 @@ class ProductController
       $_SESSION["create-product"] = "failed";
     }
     header("Location: ../../product/create");
+    exit();
+  }
+
+  public function edit()
+  {
+    Utils::isAdmin();
+    var_dump($_GET);
+  }
+
+  public function delete()
+  {
+    Utils::isAdmin();
+    if (isset($_GET["id"])) {
+      $product = new Product();
+      $product->setId($_GET["id"]);
+      $delete = $product->delete();
+      if ($delete) {
+        $_SESSION["delete-product"] = "complete";
+      } else {
+        $_SESSION["delete-product"] = "failed";
+      }
+    }
+    header("Location: ../../product/management");
     exit();
   }
 }

@@ -9,7 +9,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
   <?php
 
   use Helpers\Utils; ?>
-  <form action="../../product/save" method="POST">
+  <form action="../../product/save" method="POST" enctype="multipart/form-data">
     <?php if (isset($_SESSION["create-product"])) : ?>
       <?php if ($_SESSION["create-product"] != "complete") : ?>
         <div class="alerta alerta-error">Registro fallido</div>
@@ -40,18 +40,18 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
       <?php endwhile; ?>
     </select>
 
-    <!-- <label for="image" id="labelImage">Seleccionar imagen</label>
+    <label for="image" id="labelImage" class="mb-5">Seleccionar imagen</label>
     <?php Utils::showError("create-product-image") ?>
-    <input type="file" onchange="updateLabel()" name="image" id="image" required class="hidden">
+    <input type="file" onchange="updateLabel()" name="image" id="image" class="hidden">
     <script>
       function updateLabel() {
         var input = document.getElementById('image');
         var label = document.getElementById('labelImage');
         label.textContent = input.files.length > 0 ? input.files[0].name : 'Seleccionar imagen';
       }
-    </script> -->
+    </script>
 
-    <input class="mt-8" type="submit" value="Crear">
+    <input class="mt-5" type="submit" value="Crear">
   </form>
   <?php Utils::deleteSession("errors") ?>
   <?php Utils::deleteSession("create-product") ?>
