@@ -107,6 +107,17 @@ class Product
     $this->image = $this->database->real_escape_string($image);
   }
 
+  public function getOne()
+  {
+    try {
+      $sql = "SELECT * FROM productos WHERE id = {$this->getId()}";
+      $product = $this->database->query($sql);
+      return $product->fetch_object();
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
+
   public function getAll()
   {
     $sql = "SELECT * FROM productos ORDER BY id ASC";
@@ -141,6 +152,27 @@ class Product
     try {
       $stmt = $this->database->prepare($sql);
       $stmt->bind_param("i", $this->getId());
+      $stmt->execute();
+      $stmt->close();
+      return true;
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
+
+  public function update()
+  {
+    $sql = "UPDATE productos SET categoria_id = ?, nombre = ?, descripcion = ?, precio = ?, stock = ?, imagen = ? WHERE id = ?;";
+    try {
+      $stmt = $this->database->prepare($sql);
+      $name = $this->getName();
+      $description = $this->getDescription();
+      $price = $this->getPrice();
+      $stock = $this->getStock();
+      $category_id = $this->getCategoryId();
+      $image = $this->getImage();
+      $id = $this->getId();
+      $stmt->bind_param("issdisi", $category_id, $name, $description, $price, $stock, $image, $id);
       $stmt->execute();
       $stmt->close();
       return true;

@@ -13,6 +13,9 @@ use Helpers\Utils; ?>
       <div class="alerta alerta-exito mb-5">Registro exitoso</div>
     <?php endif; ?>
   <?php endif; ?>
+  <?php if (isset($_SESSION["edit-product"])) : ?>
+    <div class="alerta alerta-exito mb-5">Actualización exitosa</div>
+  <?php endif; ?>
   <?php if (isset($_SESSION["delete-product"])) : ?>
     <?php if ($_SESSION["delete-product"] == "complete") : ?>
       <div class="alerta alerta-exito mb-5">Eliminación exitosa</div>
@@ -57,5 +60,6 @@ use Helpers\Utils; ?>
     <a href="../../product/create" class="boton w-52 text-center">Crear producto</a>
   </div>
   <?php Utils::deleteSession("create-product") ?>
+  <?php Utils::deleteSession("edit-product") ?>
   <?php Utils::deleteSession("delete-product") ?>
 </div>
