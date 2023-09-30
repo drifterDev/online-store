@@ -12,11 +12,6 @@ use Models\User;
 
 class UserController
 {
-  public function index()
-  {
-    echo "Hola desde el controlador de usuarios";
-  }
-
   public function register()
   {
     require_once '../views/user/register.php';

@@ -15,7 +15,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
       <div>
         <p class="my-5"><?= $product->descripcion ?></p>
         <p class="my-5 text-center"><span>Precio: </span><?= $product->precio ?> COP</p>
-        <a href="../../product/index" class="boton text-center">Comprar</a>
+        <a href="../../cart/add&id=<?= $product->id ?>" class="boton text-center">Comprar</a>
       </div>
   </main>
 <?php else : ?>

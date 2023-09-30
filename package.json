@@ -9,7 +9,7 @@
   "keywords": [
     "TailwindCSS",
     "PHP",
-    "MySQL"
+    "MariaDB"
   ],
   "author": "Mateo Álvarez <maalvarezmu@unal.edu.co>",
   "license": "MIT",
