@@ -30,5 +30,5 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
   </form>
   <?php Utils::deleteSession("errors") ?>
   <?php Utils::deleteSession("edit-category") ?>
-
+  <?php unset($_SESSION["edit-category"]) ?>
 </div>

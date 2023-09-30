@@ -10,6 +10,7 @@ namespace Controllers;
 
 use Helpers\Utils;
 use Models\Category;
+use Models\Product;
 
 class CategoryController
 {
@@ -96,5 +97,26 @@ class CategoryController
     }
     header("Location: ../../category/edit");
     exit();
+  }
+
+  public function show()
+  {
+    if (isset($_GET["id"])) {
+      $category = new Category();
+      $category->setId($_GET["id"]);
+      $category = $category->getOne();
+      if ($category) {
+        $product = new Product();
+        $product->setCategoryId($category->id);
+        $products = $product->getAllCategory();
+        require_once '../views/category/show.php';
+      } else {
+        header("Location: ../../product/index");
+        exit();
+      }
+    } else {
+      header("Location: ../../product/index");
+      exit();
+    }
   }
 }

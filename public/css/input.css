@@ -109,7 +109,11 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
   }
 
   .product div {
-    @apply w-40 h-40 lg:w-48 lg:h-48 bg-no-repeat bg-center bg-cover;
+    @apply w-48 h-48 lg:w-64 lg:h-64 relative;
+  }
+
+  .product img {
+    @apply absolute inset-0 w-full h-full object-cover;
   }
 
   .register-user {
@@ -193,5 +197,13 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
   .tabla .botones {
     @apply flex flex-col md:flex-row w-full items-center md:justify-center;
+  }
+
+  .titulo {
+    @apply flex justify-center px-5 w-full mb-5;
+  }
+
+  .titulo h1 {
+    @apply text-2xl py-5 border-b-2 border-gray-500 w-full text-center;
   }
 }

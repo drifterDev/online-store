@@ -75,4 +75,15 @@ class Category
       return false;
     }
   }
+
+  public function getOne()
+  {
+    try {
+      $sql = "SELECT * FROM categorias WHERE id = {$this->getId()}";
+      $category = $this->database->query($sql);
+      return $category->fetch_object();
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
 }

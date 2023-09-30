@@ -125,6 +125,13 @@ class Product
     return $products;
   }
 
+  public function getAllCategory()
+  {
+    $sql = "SELECT p.*, c.nombre AS 'categoria' FROM productos p INNER JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = {$this->category_id} ORDER BY id ASC";
+    $products = $this->database->query($sql);
+    return $products;
+  }
+
   public function save()
   {
     $sql = "INSERT INTO productos (categoria_id, nombre, descripcion, precio, stock, oferta, fecha, imagen) " .
@@ -179,5 +186,12 @@ class Product
     } catch (\Throwable $th) {
       return false;
     }
+  }
+
+  public function getRandom()
+  {
+    $sql = "SELECT * FROM productos ORDER BY RAND() LIMIT 6;";
+    $products = $this->database->query($sql);
+    return $products;
   }
 }

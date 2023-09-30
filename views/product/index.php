@@ -5,18 +5,20 @@ Este código se proporciona bajo la Licencia MIT.
 Para más información, consulta el archivo LICENSE en la raíz del repositorio. -->
 
 <main class=" w-full">
-  <div class="flex justify-center px-5 w-full mb-5">
-    <h1 class="text-2xl py-5 border-b-2 border-gray-500 w-full text-center">Productos destacados</h1>
+  <div class="titulo">
+    <h1>Algunos de nuestros productos</h1>
   </div>
   <!-- Poner mas de estos -->
-  <div id="grid" class="grid grid-cols-3 lg:grid-cols-4">
-    <?php for ($i = 0; $i < 10; $i++) : ?>
+  <div id="grid" class="grid grid-cols-2 lg:grid-cols-3">
+    <?php while ($product =  $products->fetch_object()) : ?>
       <div class="product">
-        <div class="bg-[url('../img/producto.jpg')]"></div>
-        <h2>Producto #1</h2>
-        <p>30.000 pesos</p>
-        <a href="#">Comprar</a>
+        <div>
+          <img src="../img/uploads/<?= $product->imagen ?>" alt="Imagen del producto">
+        </div>
+        <h2><?= $product->nombre ?></h2>
+        <p><?= $product->precio ?> COP</p>
+        <a href="../../product/index">Comprar</a>
       </div>
-    <?php endfor; ?>
+    <?php endwhile; ?>
   </div>
 </main>

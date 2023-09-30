@@ -15,6 +15,8 @@ class ProductController
 {
   public function index()
   {
+    $products = new Product();
+    $products = $products->getRandom();
     require_once '../views/product/index.php';
   }
 
