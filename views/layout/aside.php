@@ -6,7 +6,9 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 <section class="mx-6 flex flex-col md:flex-row md:min-h-[24rem]">
   <?php
 
-  use Helpers\Utils; ?>
+  use Helpers\Utils;
+
+  $stats = Utils::statsCart(); ?>
   <!-- Aside -->
   <aside class="w-full md:max-w-md md:w-[20%] ">
     <div id="login">
@@ -26,6 +28,17 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
       <?php endif; ?>
       <ul class="actions">
         <?php if (isset($_SESSION["user"])) : ?>
+          <h2 class="font-semibold text-xl mb-5">Carrito de compra</h2>
+          <li>
+            <a href="../../cart/index">Mi carrito</a>
+          </li>
+          <li>
+            <a href="../../cart/index">Productos (<?= $stats["count"] ?>)</a>
+          </li>
+          <li>
+            <a href="../../cart/index">Total: <?= number_format($stats["total"], 0, ',', '.') ?> COP</a>
+          </li>
+          <h2 class="font-semibold text-xl my-5">Otras opciones</h2>
           <li>
             <a href="#">Mis pedidos</a>
           </li>

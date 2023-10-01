@@ -40,10 +40,12 @@ use Helpers\Utils; ?>
             <?= $product->id ?>
           </td>
           <td>
-            <?= $product->nombre ?>
+            <a href="../../product/show&id=<?= $product->id ?>">
+              <?= $product->nombre ?>
+            </a>
           </td>
           <td>
-            <?= $product->precio ?>
+            <?= number_format($product->precio, 0, ',', '.') ?>
           </td>
           <td>
             <?= $product->stock ?>

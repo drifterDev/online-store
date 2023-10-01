@@ -84,12 +84,9 @@ class UserController
 
   public function logout()
   {
-    if (isset($_SESSION["user"])) {
-      unset($_SESSION["user"]);
-    }
-    if (isset($_SESSION["admin"])) {
-      unset($_SESSION["admin"]);
-    }
+    unset($_SESSION["user"]);
+    unset($_SESSION["admin"]);
+    unset($_SESSION["cart"]);
     header("Location: ../../");
     exit();
   }

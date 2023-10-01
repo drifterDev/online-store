@@ -17,7 +17,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
             <img src="../img/uploads/<?= $product->imagen ?>" alt="Imagen del producto">
           </div>
           <h2><?= $product->nombre ?></h2>
-          <p><?= $product->precio ?> COP</p>
+          <p><?= number_format($product->precio, 0, ',', '.') ?> COP</p>
         </a>
         <a href="../../cart/add&id=<?= $product->id ?>" class="boton">Comprar</a>
       </div>

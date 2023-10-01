@@ -14,31 +14,48 @@ class CartController
 {
   public function index()
   {
-    var_dump($_SESSION["cart"]);
+    if (!isset($_SESSION["cart"])) {
+      $_SESSION["cart"] = array();
+    }
+    require_once '../views/cart/index.php';
   }
 
   public function add()
   {
     if (isset($_GET["id"]) && isset($_SESSION["user"])) {
       $product_id = $_GET["id"];
-    } else {
-      // header("Location: ../../");
-      var_dump($_GET);
-      exit();
-    }
-    $product = new Product();
-    $product->setId($product_id);
-    $product = $product->getOne();
-    if ($product) {
-      if (!isset($_SESSION["cart"])) {
+      $product = new Product();
+      $product->setId($product_id);
+      $product = $product->getOne();
+      $pass = false;
+      if ($product && !isset($_SESSION["cart"])) {
         $_SESSION["cart"] = array();
+        array_push($_SESSION["cart"], array(
+          "id_product" => $product->id,
+          "price" => $product->precio,
+          "units" => 1,
+          "product" => $product
+        ));
+        $pass = true;
+      } elseif ($product) {
+        foreach ($_SESSION["cart"] as $index => $value) {
+          if ($value["id_product"] == $product->id) {
+            $_SESSION["cart"][$index]["units"]++;
+            $pass = true;
+          }
+        }
+        if (!$pass) {
+          array_push($_SESSION["cart"], array(
+            "id_product" => $product->id,
+            "price" => $product->precio,
+            "units" => 1,
+            "product" => $product
+          ));
+          $pass = true;
+        }
       }
-      array_push($_SESSION["cart"], array(
-        "id_product" => $product->id,
-        "price" => $product->precio,
-        "units" => 1,
-        "producto" => $product
-      ));
+    }
+    if ($pass) {
       header("Location: ../../cart/index");
       exit();
     } else {

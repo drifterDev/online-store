@@ -23,7 +23,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
     <label for="price">Nuevo precio</label>
     <?php Utils::showError("edit-product-price") ?>
-    <input type="number" step="0.001" name="price" id="price" value="<?= $product->precio ?>" required>
+    <input type="number" step="0.001" name="price" id="price" value="<?= number_format($product->precio, 0, ',', '.') ?>" required>
 
     <label for="stock">Nuevo stock</label>
     <?php Utils::showError("edit-product-stock") ?>

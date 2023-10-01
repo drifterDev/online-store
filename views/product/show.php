@@ -14,7 +14,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
       </div>
       <div>
         <p class="my-5"><?= $product->descripcion ?></p>
-        <p class="my-5 text-center"><span>Precio: </span><?= $product->precio ?> COP</p>
+        <p class="my-5 text-center"><span>Precio: </span><?= number_format($product->precio, 0, ',', '.') ?> COP</p>
         <a href="../../cart/add&id=<?= $product->id ?>" class="boton text-center">Comprar</a>
       </div>
   </main>

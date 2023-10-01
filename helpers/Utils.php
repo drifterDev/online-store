@@ -39,4 +39,19 @@ class Utils
     $categories = $category->getAll();
     return $categories;
   }
+
+  public static function statsCart()
+  {
+    $stats = array(
+      "count" => 0,
+      "total" => 0
+    );
+    if (isset($_SESSION["cart"])) {
+      $stats["count"] = count($_SESSION["cart"]);
+      foreach ($_SESSION["cart"] as $product) {
+        $stats["total"] += $product["price"] * $product["units"];
+      }
+    }
+    return $stats;
+  }
 }
