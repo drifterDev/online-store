@@ -86,13 +86,23 @@ class OrderController
       $actual->setUnits($units);
       $result = $actual->save();
     }
-    header("Location ../../order/confirm");
+    header("Location: ../../order/confirm");
     exit();
   }
 
   public function confirm()
   {
     Utils::isIdentity();
+    $order = new Order();
+    $order->setUserId($_SESSION["user"]["id"]);;
+    $order = $order->getOneByUserId();
+    $temporal = new Order();
+    $temporal->setId($order->id);
+    $products = $temporal->getProducts();
+    if (!is_object($order) || $order == false) {
+      header("Location: ../../");
+      exit();
+    }
     require_once "../views/order/confirm.php";
   }
 }
