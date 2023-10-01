@@ -16,6 +16,7 @@ class CategoryController
 {
   public function index()
   {
+    Utils::isAdmin();
     $category = new Category();
     $categories = $category->getAll();
     require_once '../views/category/index.php';

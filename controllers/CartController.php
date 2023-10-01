@@ -9,11 +9,13 @@
 namespace Controllers;
 
 use Models\Product;
+use Helpers\Utils;
 
 class CartController
 {
   public function index()
   {
+    Utils::isIdentity();
     if (!isset($_SESSION["cart"])) {
       $_SESSION["cart"] = array();
     }
@@ -22,7 +24,8 @@ class CartController
 
   public function add()
   {
-    if (isset($_GET["id"]) && isset($_SESSION["user"])) {
+    Utils::isIdentity();
+    if (isset($_GET["id"])) {
       $product_id = $_GET["id"];
       $product = new Product();
       $product->setId($product_id);

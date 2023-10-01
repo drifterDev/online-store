@@ -44,7 +44,7 @@ $cart = $_SESSION["cart"] ?>
   <div class="w-full flex flex-col items-center">
     <h2 class="text-center">Total: <?= number_format($stats["total"], 0, ',', '.') ?> COP</h2>
     <div class="my-5 flex flex-wrap">
-      <a href="#" class="boton w-64 text-center">Realizar pedido</a>
+      <a href="../../order/do" class="boton w-64 text-center">Realizar pedido</a>
     </div>
   </div>
 </div>

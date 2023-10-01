@@ -54,4 +54,12 @@ class Utils
     }
     return $stats;
   }
+
+  public static function isIdentity()
+  {
+    if (!isset($_SESSION["user"])) {
+      header("Location: ../../product/index");
+      exit();
+    }
+  }
 }

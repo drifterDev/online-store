@@ -48,8 +48,8 @@ CREATE TABLE
     pedidos(
         id INT(255) NOT NULL AUTO_INCREMENT,
         usuario_id INT(255) NOT NULL,
-        provincia VARCHAR(255) NOT NULL,
-        localidad VARCHAR(255) NOT NULL,
+        departamento VARCHAR(255) NOT NULL,
+        ciudad VARCHAR(255) NOT NULL,
         direccion VARCHAR(255) NOT NULL,
         coste FLOAT(200, 2) NOT NULL,
         estado VARCHAR(20) NOT NULL,

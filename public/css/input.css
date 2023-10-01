@@ -64,6 +64,10 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
     @apply bg-black text-white w-32 md:w-28 lg:w-32 px-5 md:px-2 lg:px-5 py-2 transition-all cursor-pointer mb-8;
   }
 
+  .order input[type="submit"] {
+    @apply bg-black text-white w-52 px-5 md:px-2 lg:px-5 py-2 transition-all cursor-pointer mb-8;
+  }
+
   .boton2 {
     @apply bg-gray-300 text-black w-20 md:w-[4.25rem] lg:w-24 px-2 md:px-1 lg:px-5 py-2 transition-all cursor-pointer mb-8;
   }
@@ -74,6 +78,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
   .form input[type="submit"]:hover,
   .register-user input[type="submit"]:hover,
+  .order input[type="submit"]:hover,
   .boton:hover {
     @apply bg-gray-900 scale-105;
   }
@@ -134,19 +139,23 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
     @apply font-bold;
   }
 
-  .register-user {
+  .register-user,
+  .order {
     @apply w-full flex flex-col items-center;
   }
 
-  .register-user h1 {
+  .register-user h1,
+  .order h1 {
     @apply text-2xl mb-5 mt-8;
   }
 
-  .register-user form {
+  .register-user form,
+  .order form {
     @apply flex flex-col items-center;
   }
 
   .register-user input[type="text"],
+  .order input[type="text"],
   .register-user input[type="password"],
   .register-user input[type="number"],
   .register-user input[type="email"] {
