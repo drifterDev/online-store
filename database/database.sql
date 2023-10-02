@@ -3,11 +3,11 @@
  Este código se proporciona bajo la Licencia MIT.
  Para más información, consulta el archivo LICENSE en la raíz del repositorio. */
 
-CREATE DATABASE dbs_store;
+CREATE DATABASE nombre_de_la_base_de_datos;
 
 SET NAMES utf8mb4;
 
-USE dbs_store;
+USE nombre_de_la_base_de_datos;
 
 CREATE TABLE
     usuarios(
@@ -79,13 +79,3 @@ WHERE id = (
         FROM usuarios
         LIMIT 1
     );
-
-DROP TABLE IF EXISTS usuarios;
-
-DROP TABLE IF EXISTS categorias;
-
-DROP TABLE IF EXISTS productos;
-
-DROP TABLE IF EXISTS pedidos;
-
-DROP TABLE IF EXISTS pedidos_has_productos;

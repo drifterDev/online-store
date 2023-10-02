@@ -8,6 +8,10 @@
 
 namespace Config;
 
+// define("SERVER", "localhost");
+// define("DATABASE", "nombre_de_la_base_de_datos");
+// define("USERNAME", "tu_usuario");
+// define("PASSWORD", "tu_contraseña");
 define("SERVER", "localhost");
 define("DATABASE", "dbs_store");
 define("USERNAME", "root");

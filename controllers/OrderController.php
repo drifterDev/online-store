@@ -58,6 +58,34 @@ class OrderController
       header("Location: ../../order/do");
       exit();
     }
+    if (!isset($_SESSION["cart"])) {
+      $_SESSION["order"] = "No hay productos en el carrito";
+      header("Location: ../../order/do");
+      exit();
+    }
+
+    $cart = $_SESSION["cart"];
+    $pasa = false;
+    foreach ($cart as  $index => $product) {
+      $product_id = $product["product"]->id;
+      $units = $product["units"];
+
+      $tmp = new Product();
+      $tmp->setId($product_id);
+      $product = $tmp->getOne();
+      if ($units > $product->stock) {
+        $_SESSION["order"] = "No hay suficiente stock";
+        header("Location: ../../order/do");
+        exit();
+      }
+      $pasa = true;
+    }
+
+    if (!$pasa) {
+      $_SESSION["order"] = "No hay productos en el carrito";
+      header("Location: ../../order/do");
+      exit();
+    }
 
     $user_id = $_SESSION["user"]["id"];
     $price = Utils::statsCart()["total"];
@@ -71,15 +99,13 @@ class OrderController
     $order->setState($state);
     $result = $order->save();
 
-    if (!$result || !isset($_SESSION["cart"])) {
+    if (!$result) {
       $_SESSION["order"] = "Pedido fallido";
       header("Location: ../../order/do");
       exit();
     }
 
-    $cart = $_SESSION["cart"];
     $order_id = $order->getId();
-    $pasa = false;
     foreach ($cart as  $index => $product) {
       $product_id = $product["product"]->id;
       $units = $product["units"];
@@ -93,15 +119,7 @@ class OrderController
       $tmp->setName($product->nombre);
       $tmp->setDescription($product->descripcion);
       $tmp->setPrice($product->precio);
-      if ($units > $product->stock) {
-        $units = $product->stock;
-      }
-      $stock = max($product->stock - $units, 0);
-      $_SESSION["cart"][$index]["units"] = $units;
-      if ($units == 0) {
-        unset($_SESSION["cart"][$index]);
-        continue;
-      }
+      $stock = $product->stock - $units;
       $tmp->setStock($stock);
       $tmp->setCategoryId($product->categoria_id);
       $tmp->setImage($product->imagen);
@@ -109,12 +127,6 @@ class OrderController
 
       $actual->setUnits($units);
       $result = $actual->save();
-      $pasa = true;
-    }
-    if (!$pasa) {
-      $_SESSION["order"] = "Pedido fallido";
-      header("Location: ../../order/do");
-      exit();
     }
     header("Location: ../../order/confirm");
     exit();

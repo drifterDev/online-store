@@ -1,10 +1,11 @@
 {
-  "name": "online-store",
+  "name": "tienda-linea",
   "version": "1.0.0",
   "description": "Proyecto de tienda en línea",
   "main": "index.js",
   "scripts": {
-    "dev": "postcss ./public/css/input.css -o ./public/css/output.css --watch"
+    "dev": "postcss ./public/css/input.css -o ./public/css/output.css --watch",
+    "build": "postcss ./public/css/input.css -o ./public/css/output.css"
   },
   "keywords": [
     "TailwindCSS",
