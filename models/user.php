@@ -96,6 +96,26 @@ class User
     $this->image = $this->database->real_escape_string($image);
   }
 
+  public function getOne()
+  {
+    $sql = "SELECT * FROM usuarios WHERE id = ?;";
+    try {
+      $stmt = $this->database->prepare($sql);
+      $id = $this->getId();
+      $stmt->bind_param("i", $id);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      $stmt->close();
+      if ($result->num_rows == 1) {
+        return $result->fetch_assoc();
+      } else {
+        return false;
+      }
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
+
   public function save()
   {
     $sql = "INSERT INTO usuarios (nombre, apellidos, email, password, rol, imagen) VALUES "

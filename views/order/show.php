@@ -8,8 +8,14 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 use Helpers\Utils; ?>
 <div class="tabla">
   <h1>Pedido #<?= $order->id ?></h1>
+  <h3 class="text-lg">Datos del usuario</h3>
+  <div class="mb-5 flex flex-col items-center">
+    <p>Nombre: <?= $user["nombre"] ?></p>
+    <p>Apellidos: <?= $user["apellidos"] ?></p>
+    <p>Email: <?= $user["email"] ?></p>
+  </div>
   <?php if (isset($_SESSION["admin"])) : ?>
-    <div class="state mb-5">
+    <div class="state mb-2">
       <form action="../../order/state" method="POST">
         <input type="hidden" name="order_id" value="<?= $order->id ?>">
         <label for="state">Cambiar estado</label>
@@ -27,6 +33,7 @@ use Helpers\Utils; ?>
       </form>
     </div>
   <?php endif; ?>
+
   <table>
     <thead>
       <tr>

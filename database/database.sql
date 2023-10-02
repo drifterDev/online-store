@@ -70,30 +70,22 @@ CREATE TABLE
         CONSTRAINT fk_pedidos_has_productos_producto FOREIGN KEY(producto_id) REFERENCES productos(id) ON DELETE CASCADE ON UPDATE CASCADE
     ) Engine = InnoDB DEFAULT CHARSET = utf8mb4;
 
-INSERT INTO categorias (nombre)
-VALUES ("Vestidos"), ("Ropa deportiva"), ("Trajes y ropa formal"), ("Pantalones y vaqueros");
+/* Despues de crear al primer usuario ejecutar el siguiente codigo para darle el rol de administrador */
 
-INSERT INTO
-    productos (
-        categoria_id,
-        nombre,
-        descripcion,
-        precio,
-        stock,
-        fecha
-    )
-VALUES (
-        3,
-        'Producto 3',
-        'Descripción del Producto 3',
-        25.850,
-        50,
-        '2023-09-29'
-    ), (
-        4,
-        'Producto prueba 4 de talla XS',
-        'Descripción del Producto 4',
-        69.950,
-        30,
-        '2023-09-30'
+UPDATE usuarios
+SET rol = 'admin'
+WHERE id = (
+        SELECT id
+        FROM usuarios
+        LIMIT 1
     );
+
+DROP TABLE IF EXISTS usuarios;
+
+DROP TABLE IF EXISTS categorias;
+
+DROP TABLE IF EXISTS productos;
+
+DROP TABLE IF EXISTS pedidos;
+
+DROP TABLE IF EXISTS pedidos_has_productos;

@@ -11,6 +11,8 @@ namespace Controllers;
 use Models\Order;
 use Helpers\Utils;
 use Models\Order_has_product;
+use Models\Product;
+use Models\User;
 
 class OrderController
 {
@@ -77,14 +79,42 @@ class OrderController
 
     $cart = $_SESSION["cart"];
     $order_id = $order->getId();
+    $pasa = false;
     foreach ($cart as  $index => $product) {
       $product_id = $product["product"]->id;
       $units = $product["units"];
       $actual = new Order_has_product();
       $actual->setOrderId($order_id);
       $actual->setProductId($product_id);
+
+      $tmp = new Product();
+      $tmp->setId($product_id);
+      $product = $tmp->getOne();
+      $tmp->setName($product->nombre);
+      $tmp->setDescription($product->descripcion);
+      $tmp->setPrice($product->precio);
+      if ($units > $product->stock) {
+        $units = $product->stock;
+      }
+      $stock = max($product->stock - $units, 0);
+      $_SESSION["cart"][$index]["units"] = $units;
+      if ($units == 0) {
+        unset($_SESSION["cart"][$index]);
+        continue;
+      }
+      $tmp->setStock($stock);
+      $tmp->setCategoryId($product->categoria_id);
+      $tmp->setImage($product->imagen);
+      $result = $tmp->update();
+
       $actual->setUnits($units);
       $result = $actual->save();
+      $pasa = true;
+    }
+    if (!$pasa) {
+      $_SESSION["order"] = "Pedido fallido";
+      header("Location: ../../order/do");
+      exit();
     }
     header("Location: ../../order/confirm");
     exit();
@@ -126,7 +156,11 @@ class OrderController
     $order->setId($_GET["id"]);
     $products = $order->getProducts();
     $order = $order->getOne();
-    if (($_SESSION["user"]["id"] != $order->usuario_id && !isset($_SESSION["admin"])) || !is_object($order) || $order == false) {
+    $user = new User();
+    $user->setId($order->usuario_id);
+    $user = $user->getOne();
+    // var_dump($user);
+    if (($_SESSION["user"]["id"] != $order->usuario_id && !isset($_SESSION["admin"])) || !is_object($order) || $order == false || $user == false) {
       header("Location: ../../");
       exit();
     }

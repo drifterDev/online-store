@@ -36,7 +36,7 @@ $cart = $_SESSION["cart"] ?>
             <?= number_format($product["product"]->precio, 0, ',', '.') ?>
           </td>
           <td>
-            <div class="text-xl w-24">
+            <div class="text-xl w-32">
               <a href="../../cart/down&id=<?= $product["product"]->id ?>" class="boton-cart">-</a>
               <span class="mx-2">
                 <?= $product["units"] ?>

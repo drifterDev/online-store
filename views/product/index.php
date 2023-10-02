@@ -19,7 +19,9 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
           <h2><?= $product->nombre ?></h2>
           <p><?= number_format($product->precio, 0, ',', '.') ?> COP</p>
         </a>
-        <a href="../../cart/add&id=<?= $product->id ?>" class="boton">Comprar</a>
+        <?php if ($product->stock > 0) : ?>
+          <a href="../../cart/add&id=<?= $product->id ?>" class="boton">Comprar</a>
+        <?php endif; ?>
       </div>
     <?php endwhile; ?>
   </div>
