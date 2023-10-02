@@ -2,7 +2,7 @@
 
 El propósito de este proyecto es recrear una tienda en línea de ropa donde los usuarios puedan registrarse, iniciar sesión, agregar productos a su carrito de compras y realizar pedidos. El proyecto está desarrollado con PHP, MySQL y Tailwind CSS.
 
-Se empleó Tailwind CSS para la maquetación, MySQL para el administrador de la base de datos y PHP en gran medida para la lógica del backend.
+Se empleó Tailwind CSS para la maquetación, MySQL como gestor de base de datos y PHP en gran medida para la lógica del backend.
 
 ## Funcionalidades
 
