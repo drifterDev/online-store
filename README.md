@@ -22,6 +22,8 @@ _Administración:_ Los administradores podrán agregar, editar y eliminar produc
 
 Antes de comenzar, asegúrate de tener instalado `npm` en tu sistema. Si no lo tienes instalado, puedes descargarlo e instalarlo desde [el sitio web oficial de Node.js](https://nodejs.org/).
 
+También necesitarás tener instalado `composer` en tu sistema. Si no lo tienes instalado, puedes descargarlo e instalarlo desde [el sitio web oficial de Composer](https://getcomposer.org/).
+
 Además, ten en cuenta que para ejecutar este proyecto de manera completa, necesitarás tener PHP y un servidor MySQL configurado en tu entorno de desarrollo. Asegúrate de que tu servidor PHP esté funcionando correctamente y que tengas acceso a una base de datos MySQL para que todas las funcionalidades del proyecto se ejecuten sin problemas.
 
 **Recomendación:** Para facilitar la configuración de un servidor PHP y MySQL en tu entorno de desarrollo, recomiendo utilizar XAMPP, una solución todo en uno que incluye Apache (para PHP) y MySQL en un solo paquete. Puedes descargar XAMPP desde [el sitio web oficial de XAMPP](https://www.apachefriends.org/index.html). Esto simplificará la configuración y te permitirá comenzar rápidamente con tu proyecto.
@@ -86,9 +88,9 @@ Además, ten en cuenta que para ejecutar este proyecto de manera completa, neces
 
    ```bash
    <VirtualHost *:80>
-       DocumentRoot "C:/xampp/htdocs/nombre_del_proyecto"
+       DocumentRoot "C:\xampp\htdocs\nombre_del_proyecto\public"
        ServerName nombre_del_proyecto.localhost
-       <Directory "C:/xampp/htdocs/nombre_del_proyecto">
+       <Directory "C:\xampp\htdocs\nombre_del_proyecto\public">
            DirectoryIndex index.php
            Options Indexes FollowSymLinks
            AllowOverride All
