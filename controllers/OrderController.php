@@ -105,4 +105,65 @@ class OrderController
     }
     require_once "../views/order/confirm.php";
   }
+
+  public function myOrders()
+  {
+    Utils::isIdentity();
+    $order = new Order();
+    $order->setUserId($_SESSION["user"]["id"]);
+    $orders = $order->getAllByUserId();
+    require_once "../views/order/myOrders.php";
+  }
+
+  public function show()
+  {
+    Utils::isIdentity();
+    if (!isset($_GET["id"])) {
+      header("Location: ../../");
+      exit();
+    }
+    $order = new Order();
+    $order->setId($_GET["id"]);
+    $products = $order->getProducts();
+    $order = $order->getOne();
+    if (($_SESSION["user"]["id"] != $order->usuario_id && !isset($_SESSION["admin"])) || !is_object($order) || $order == false) {
+      header("Location: ../../");
+      exit();
+    }
+    require_once "../views/order/show.php";
+  }
+
+  public function management()
+  {
+    Utils::isAdmin();
+    $order = new Order();
+    $orders = $order->getAll();
+    require_once "../views/order/management.php";
+  }
+
+  public function state()
+  {
+    Utils::isAdmin();
+    if (!isset($_POST)) {
+      header("Location: ../../");
+      exit();
+    }
+    $order_id = $_POST["order_id"] ?? false;
+    $state = $_POST["state"] ?? false;
+    if (!$order_id || !$state) {
+      header("Location: ../../");
+      exit();
+    }
+    $order = new Order();
+    $order->setId($order_id);
+    $order->setState($state);
+    $result = $order->changeState();
+    if (!$result) {
+      header("Location: ../../");
+      exit();
+    } else {
+      header("Location: ../../order/show&id=$order_id");
+      exit();
+    }
+  }
 }

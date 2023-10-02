@@ -125,6 +125,17 @@ class Order
     }
   }
 
+  public function getAllByUserId()
+  {
+    try {
+      $sql = "SELECT * FROM pedidos WHERE usuario_id = {$this->getUserId()} ORDER BY id ASC";
+      $result = $this->database->query($sql);
+      return $result;
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
+
   public function getProducts()
   {
     $sql = "SELECT pr.id, pp.unidades, pr.precio, pr.nombre, pr.imagen " .
@@ -146,7 +157,7 @@ class Order
   public function save()
   {
     $sql = "INSERT INTO pedidos (usuario_id, departamento, ciudad, direccion, coste, estado, fecha, hora) VALUES " .
-      "(?, ?, ?, ?, ?, 'confirmado', CURDATE(), CURTIME());";
+      "(?, ?, ?, ?, ?, 'confirm', CURDATE(), CURTIME());";
     try {
       $stmt = $this->database->prepare($sql);
       $user_id = $this->getUserId();
@@ -158,6 +169,22 @@ class Order
       $stmt->execute();
       $stmt->close();
       $this->setId($this->database->insert_id);
+      return true;
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
+
+  public function changeState()
+  {
+    $sql = "UPDATE pedidos SET estado = ? WHERE id = ?";
+    try {
+      $stmt = $this->database->prepare($sql);
+      $state = $this->getState();
+      $id = $this->getId();
+      $stmt->bind_param("si", $state, $id);
+      $stmt->execute();
+      $stmt->close();
       return true;
     } catch (\Throwable $th) {
       return false;

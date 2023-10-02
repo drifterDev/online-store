@@ -18,6 +18,7 @@ $cart = $_SESSION["cart"] ?>
         <th>Producto</th>
         <th>Precio (COP)</th>
         <th>Cantidad</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -35,7 +36,16 @@ $cart = $_SESSION["cart"] ?>
             <?= number_format($product["product"]->precio, 0, ',', '.') ?>
           </td>
           <td>
-            <?= $product["units"] ?>
+            <div class="text-xl w-24">
+              <a href="../../cart/down&id=<?= $product["product"]->id ?>" class="boton-cart">-</a>
+              <span class="mx-2">
+                <?= $product["units"] ?>
+              </span>
+              <a href="../../cart/up&id=<?= $product["product"]->id ?>" class="boton-cart">+</a>
+            </div>
+          </td>
+          <td>
+            <a class="boton-cart" href="../../cart/remove&id=<?= $product["product"]->id ?>">Eliminar</a>
           </td>
         </tr>
       <?php endforeach; ?>
@@ -43,8 +53,9 @@ $cart = $_SESSION["cart"] ?>
   </table>
   <div class="w-full flex flex-col items-center">
     <h2 class="text-center">Total: <?= number_format($stats["total"], 0, ',', '.') ?> COP</h2>
-    <div class="my-5 flex flex-wrap">
+    <div class="my-5 flex flex-col flex-wrap">
       <a href="../../order/do" class="boton w-64 text-center">Realizar pedido</a>
+      <a href="../../cart/delete" class="boton w-64 text-center">Limpiar carrito</a>
     </div>
   </div>
 </div>

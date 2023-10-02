@@ -62,4 +62,15 @@ class Utils
       exit();
     }
   }
+
+  public static function getState($value)
+  {
+    $states = array(
+      "confirm" => "Pendiente",
+      "preparation" => "En preparación",
+      "ready" => "Para enviar",
+      "sended" => "Enviado"
+    );
+    return $states[$value];
+  }
 }

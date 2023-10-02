@@ -64,6 +64,10 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
     @apply bg-black text-white w-32 md:w-28 lg:w-32 px-5 md:px-2 lg:px-5 py-2 transition-all cursor-pointer mb-8;
   }
 
+  .state input[type="submit"] {
+    @apply bg-black text-white w-52 md:w-48 lg:w-52 px-5 md:px-2 lg:px-5 py-2 transition-all cursor-pointer mb-8;
+  }
+
   .order input[type="submit"] {
     @apply bg-black text-white w-52 px-5 md:px-2 lg:px-5 py-2 transition-all cursor-pointer mb-8;
   }
@@ -78,6 +82,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
   .form input[type="submit"]:hover,
   .register-user input[type="submit"]:hover,
+  .state input[type="submit"]:hover,
   .order input[type="submit"]:hover,
   .boton:hover {
     @apply bg-gray-900 scale-105;
@@ -140,6 +145,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
   }
 
   .register-user,
+  .state,
   .order {
     @apply w-full flex flex-col items-center;
   }
@@ -150,6 +156,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
   }
 
   .register-user form,
+  .state form,
   .order form {
     @apply flex flex-col items-center;
   }
@@ -170,7 +177,8 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
     @apply border-b-2 border-black cursor-pointer pb-2 text-lg mt-5;
   }
 
-  .register-user select {
+  .register-user select,
+  .state select {
     @apply w-64 h-8 p-1 mb-3 mt-2 border-2 border-gray-500 rounded-md;
   }
 
@@ -207,7 +215,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
   }
 
   .tabla table {
-    @apply mb-5 max-w-[30rem] w-full divide-y divide-gray-200;
+    @apply mb-5 md:max-w-[30rem] lg:max-w-2xl w-full divide-y divide-gray-200;
   }
 
   .tabla th {
@@ -232,5 +240,13 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
 
   .titulo h1 {
     @apply text-2xl py-5 border-b-2 border-gray-500 w-full text-center;
+  }
+
+  .boton-cart {
+    @apply border-black border-2 p-2 cursor-pointer transition-all;
+  }
+
+  .boton-cart:hover {
+    @apply bg-black text-white;
   }
 }

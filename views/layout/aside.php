@@ -40,7 +40,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
           </li>
           <h2 class="font-semibold text-xl my-5">Otras opciones</h2>
           <li>
-            <a href="#">Mis pedidos</a>
+            <a href="../../order/myOrders">Mis pedidos</a>
           </li>
         <?php else : ?>
           <li>
@@ -55,7 +55,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
             <a href="../../product/management">Gestionar productos</a>
           </li>
           <li>
-            <a href="#">Gestionar pedidos</a>
+            <a href="../../order/management">Gestionar pedidos</a>
           </li>
         <?php endif; ?>
         <?php if (isset($_SESSION["user"])) : ?>
