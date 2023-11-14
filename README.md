@@ -16,7 +16,7 @@ _Administración:_ Los administradores podrán agregar, editar y eliminar produc
 
 ![Vista previa 1](./public/img/preview.png)
 
-## Comenzando 🚀
+## Comenzando 
 
 1. Clona este repositorio en tu máquina local o descargar la carpeta comprimida del proyecto:
 
@@ -34,7 +34,7 @@ Además, ten en cuenta que para ejecutar este proyecto de manera completa, neces
 
 **Recomendación:** Para facilitar la configuración de un servidor PHP y MySQL en tu entorno de desarrollo, recomiendo utilizar XAMPP, una solución todo en uno que incluye Apache (para PHP) y MySQL en un solo paquete. Puedes descargar XAMPP desde [el sitio web oficial de XAMPP](https://www.apachefriends.org/index.html). Esto simplificará la configuración y te permitirá comenzar rápidamente con tu proyecto.
 
-### Instalación 🔧
+### Instalación 
 
 1. Descargar las dependencias necesarias del proyecto:
 
