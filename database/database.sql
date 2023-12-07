@@ -5,10 +5,9 @@
 
 CREATE DATABASE nombre_de_la_base_de_datos;
 
-SET NAMES utf8mb4;
-
 USE nombre_de_la_base_de_datos;
 
+SET NAMES utf8mb4;
 CREATE TABLE
     usuarios(
         id INT(255) NOT NULL AUTO_INCREMENT,
