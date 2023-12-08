@@ -12,7 +12,7 @@ session_start();
 require_once '../vendor/autoload.php';
 require_once '../config/parameters.php';
 require_once '../helpers/Utils.php';
-require_once '../config/DataBase.php';
+require_once '../config/Database.php';
 require_once '../views/layout/head.php';
 require_once '../views/layout/header.php';
 require_once '../views/layout/aside.php';
@@ -46,3 +46,4 @@ if (isset($_GET["controller"]) && isset($_GET["action"])) {
 }
 
 require_once '../views/layout/footer.php';
+?>
