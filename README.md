@@ -58,13 +58,13 @@ Además, ten en cuenta que para ejecutar este proyecto de manera completa, neces
 
 4. Ejecutar el script SQL `database/database.sql` en tu servidor MySQL para crear la base de datos y las tablas necesarias para el proyecto (Recuerda cambiar el valor de nombre_de_la_base_de_datos).
 
-5. Asegurate de crear la carpeta `uploads` en el directorio `public/img` del proyecto. Tambien asegurate de darle los permisos necesarios a la carpeta `uploads` para que el servidor pueda escribir y leer archivos en ella. Esta carpeta es necesaria para almacenar las imágenes de los productos.
+5. Asegúrate de crear la carpeta `uploads` en el directorio `public/img` del proyecto. También asegúrate de darle los permisos necesarios a la carpeta `uploads` para que el servidor pueda escribir y leer archivos en ella. Esta carpeta es necesaria para almacenar las imágenes de los productos.
 
 ## Iniciar el proyecto
 
 El proyecto fue hecho para practicar los virtual hosts de apache, por lo que para acceder al proyecto se debe configurar un virtual host en el servidor apache.
 
-## Virual host en windows con xampp
+## Virtual host en Windows con xampp
 
 1. Verificar que la siguiente línea este descomentada de `httpd.conf` del servidor apache
 
@@ -96,7 +96,7 @@ El proyecto fue hecho para practicar los virtual hosts de apache, por lo que par
 
 4. Reiniciar el servidor apache y acceder al proyecto utilizando la URL `http://nombre_del_proyecto.test`.
 
-## Virtual host en linux con httpd
+## Virtual host en Linux con httpd
 
 1. Acceder a la carpeta de instalación de httpd e ir a la carpeta `/etc/httpd/conf/httpd.conf` y agregar lo siguiente:
 
@@ -153,3 +153,4 @@ Los códigos incluidos en este proyecto están bajo la Licencia MIT. Para obtene
 Las imágenes utilizadas en este proyecto han sido obtenidas de Pexels.com, un sitio web que ofrece fotos de alta calidad de dominio público sin restricciones de licencia. Aunque no es necesario dar atribución en muchos casos, quiero reconocer y agradecer a la comunidad de Pexels por proporcionar recursos visuales gratuitos.
 
 Para obtener más información sobre la licencia de las imágenes específicas utilizadas en este proyecto, consulta las políticas de licencia en el sitio web de Pexels: [Pexels License](https://www.pexels.com/license/).
+
