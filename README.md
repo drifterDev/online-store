@@ -16,7 +16,7 @@ _Administración:_ Los administradores podrán agregar, editar y eliminar produc
 
 ![Vista previa 1](./public/img/preview.png)
 
-## Comenzando 
+## Comenzando
 
 1. Clona este repositorio en tu máquina local o descargar la carpeta comprimida del proyecto:
 
@@ -24,7 +24,7 @@ _Administración:_ Los administradores podrán agregar, editar y eliminar produc
    git clone https://github.com/drifterDev/online-store.git
    ```
 
-### Prerrequisitos 
+### Prerrequisitos
 
 Antes de comenzar, asegúrate de tener instalado `npm` en tu sistema. Si no lo tienes instalado, puedes descargarlo e instalarlo desde [el sitio web oficial de Node.js](https://nodejs.org/).
 
@@ -32,14 +32,13 @@ También necesitarás tener instalado `composer` en tu sistema. Si no lo tienes 
 
 Además, ten en cuenta que para ejecutar este proyecto de manera completa, necesitarás tener PHP y un servidor MySQL configurado en tu entorno de desarrollo. Asegúrate de que tu servidor PHP esté funcionando correctamente y que tengas acceso a una base de datos MySQL para que todas las funcionalidades del proyecto se ejecuten sin problemas.
 
-**Recomendación:** Para facilitar la configuración de un servidor PHP y MySQL en tu entorno de desarrollo, recomiendo utilizar XAMPP, una solución todo en uno que incluye Apache (para PHP) y MySQL en un solo paquete. Puedes descargar XAMPP desde [el sitio web oficial de XAMPP](https://www.apachefriends.org/index.html). Esto simplificará la configuración y te permitirá comenzar rápidamente con tu proyecto.
-
-### Instalación 
+### Instalación
 
 1. Descargar las dependencias necesarias del proyecto:
 
    ```bash
    npm install
+   composer install
    ```
 
 2. Ejecutar el comando para compilar los archivos de Tailwind CSS:
@@ -59,28 +58,19 @@ Además, ten en cuenta que para ejecutar este proyecto de manera completa, neces
 
 4. Ejecutar el script SQL `database/database.sql` en tu servidor MySQL para crear la base de datos y las tablas necesarias para el proyecto (Recuerda cambiar el valor de nombre_de_la_base_de_datos).
 
-5. Ejecutar el comando para cargar composer y las dependencias necesarias:
+5. Asegurate de crear la carpeta `uploads` en el directorio `public/img` del proyecto. Tambien asegurate de darle los permisos necesarios a la carpeta `uploads` para que el servidor pueda escribir y leer archivos en ella. Esta carpeta es necesaria para almacenar las imágenes de los productos.
 
-   ```bash
-   composer install
-   composer dump
-   ```
 ## Iniciar el proyecto
 
-1. Abre el panel de control de XAMPP y asegúrate de que los servicios de Apache y MySQL estén "Running" (ejecutándose). Si no lo están, haz clic en los botones "Start" junto a esos servicios para iniciarlos.
+El proyecto fue hecho para practicar los virtual hosts de apache, por lo que para acceder al proyecto se debe configurar un virtual host en el servidor apache.
 
-2. Coloca este proyecto en el directorio `htdocs` de XAMPP. Por defecto, el directorio `htdocs` se encuentra en la carpeta de instalación de XAMPP.
-
-3. Abre tu navegador web y accede al proyecto utilizando la URL `http://localhost/nombre_del_proyecto`. Reemplaza "nombre_de_tu_proyecto" con la carpeta o ruta relativa donde esté el proyecto dentro del directorio `htdocs`. Por ejemplo, si el proyecto está en `C:\xampp\htdocs\proyecto`, debes acceder a `http://localhost/proyecto`.
-
-## Iniciar el proyecto si lo anterior no funciona
+## Virual host en windows con xampp
 
 1. Verificar que la siguiente línea este descomentada de `httpd.conf` del servidor apache
 
    ```bash
    # Virtual hosts
    LoadModule vhost_alias_module modules/mod_vhost_alias.so
-
    ```
 
 2. Acceder a la carpeta de instalación de xamp e ir a la carpeta `apache/conf/extra/httpd-vhosts.conf` y agregar lo siguiente:
@@ -88,7 +78,7 @@ Además, ten en cuenta que para ejecutar este proyecto de manera completa, neces
    ```bash
    <VirtualHost *:80>
        DocumentRoot "C:\xampp\htdocs\nombre_del_proyecto\public"
-       ServerName nombre_del_proyecto.localhost
+       ServerName nombre_del_proyecto.test
        <Directory "C:\xampp\htdocs\nombre_del_proyecto\public">
            DirectoryIndex index.php
            Options Indexes FollowSymLinks
@@ -101,16 +91,48 @@ Además, ten en cuenta que para ejecutar este proyecto de manera completa, neces
 3. Ya apache reconoce la url, pero para que el navegador también lo reconozca hay que acceder a la siguiente ruta `C:\Windows\System32\drivers\etc` y editar el archivo `hosts` agregando la siguiente línea:
 
    ```bash
-   127.0.0.1 nombre_del_proyecto.localhost
+   127.0.0.1 nombre_del_proyecto.test
    ```
 
-4. Abrir el navegador web y acceder al proyecto utilizando la URL `http://nombre_del_proyecto.localhost`.
+4. Reiniciar el servidor apache y acceder al proyecto utilizando la URL `http://nombre_del_proyecto.test`.
 
-## Construido con 
+## Virtual host en linux con httpd
 
-* [Tailwind CSS](https://tailwindcss.com/) - El framework CSS utilizado
-* [MySQL](https://www.mysql.com/) - Gestor de base de datos
-* [PHP](https://www.php.net/) - Lenguaje de programación utilizado en el backend
+1. Acceder a la carpeta de instalación de httpd e ir a la carpeta `/etc/httpd/conf/httpd.conf` y agregar lo siguiente:
+
+   ```bash
+   <VirtualHost *:80>
+    DocumentRoot "/var/www/html/nombre_del_proyecto/public"
+    ServerName nombre_del_proyecto.test
+    ServerAlias www.nombre_del_proyecto.test
+    <Directory "/var/www/html/nombre_del_proyecto/public">
+        Options Indexes FollowSymLinks
+        AllowOverride all
+        Require all granted
+        DirectoryIndex index.php
+    </Directory>
+   </VirtualHost>
+   ```
+
+2. Ya apache reconoce la url, pero para que el navegador también lo reconozca hay que acceder a la siguiente ruta `/etc/hosts` y editar el archivo `hosts` agregando la siguiente línea:
+
+   ```bash
+   127.0.0.1   www.nombre_del_proyecto.test nombre_del_proyecto.test
+   ```
+
+3. Reiniciar el servidor apache
+
+   ```bash
+   sudo systemctl restart httpd
+   ```
+
+4. Abrir el navegador web y acceder al proyecto utilizando la URL `http://nombre_del_proyecto.test`.
+
+## Construido con
+
+- [Tailwind CSS](https://tailwindcss.com/) - El framework CSS utilizado
+- [MySQL](https://www.mysql.com/) - Gestor de base de datos
+- [PHP](https://www.php.net/) - Lenguaje de programación utilizado en el backend
 
 ## Más vistas previas
 
@@ -118,7 +140,7 @@ Además, ten en cuenta que para ejecutar este proyecto de manera completa, neces
 
 ![Vista previa 3](./public/img/preview3.png)
 
-## Contribuyendo 
+## Contribuyendo
 
 Aprecio cualquier sugerencia para mejorar el contenido de este proyecto. Si deseas contribuir, por favor crea un "issue" en el repositorio o contáctame directamente. Valoraré tus aportes para mejorar este repositorio.
 

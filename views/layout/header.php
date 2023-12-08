@@ -11,7 +11,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
       <div id="logo" class="flex items-center">
         <div class="w-24 m-2 h-24 bg-[url('../img/logo.jpg')] bg-contain bg-no-repeat">
         </div>
-        <a href="../../product/index" class="font-bold text-2xl">
+        <a href="../../" class="font-bold text-2xl">
           Tienda en línea
         </a>
       </div>
@@ -20,7 +20,7 @@ Para más información, consulta el archivo LICENSE en la raíz del repositorio.
     <nav class="navbar">
       <ul>
         <li>
-          <a href="../../product/index">Inicio</a>
+          <a href="../../">Inicio</a>
         </li>
         <?php
 

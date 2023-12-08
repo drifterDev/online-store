@@ -74,14 +74,12 @@ class ProductController
       $mimetype = $file["type"] ?? false;
 
       if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
-        if (!is_dir("img/uploads")) {
-          mkdir("img/uploads", 0777);
-        }
         move_uploaded_file($file["tmp_name"], "img/uploads/" . $filename);
       } else {
         $_SESSION["errors"]["create-product-image"] = "Imagen ingresada no es valida.";
         $errors++;
       }
+      echo __DIR__. "/img/uploads/" . $filename;
 
       if ($errors == 0) {
         $producto = new Product();
